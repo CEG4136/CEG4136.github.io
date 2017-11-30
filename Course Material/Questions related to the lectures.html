@@ -1,0 +1,150 @@
+<html><head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+</head><body>
+<p style="margin: 0in; font-family: Calibri; font-size: 11.0pt;"><span style="font-weight: bold;">Questions - Snooping caches - implementation</span></p>
+<p style="margin: 0in; font-family: Calibri; font-size: 11.0pt;">Why do we need dual directories in snooping caches?</p>
+<p style="margin: 0in; font-family: Calibri; font-size: 11.0pt;">Why do we need to store the data in a FIFO buffer for write-back caches?</p>
+<p style="margin: 0in; font-family: Calibri; font-size: 11.0pt;">Draw and explain the architecture of a cache controller with multiple caches?</p>
+<p style="margin: 0in; font-family: Calibri; font-size: 11.0pt;"> </p>
+<p style="margin: 0in; font-family: Calibri; font-size: 11.0pt;">What is the purpose of wired-NOR bus line for the MESI protocol?</p>
+<p style="margin: 0in; font-family: Calibri; font-size: 11.0pt;">Why is there a shared signal line between caches? How is this line implemented?</p>
+<p style="margin: 0in; font-family: Calibri; font-size: 11.0pt;"> </p>
+<p style="margin: 0in; font-family: Calibri; font-size: 11.0pt;">What are advantages and disadvantages of MESI in comparison with MSI?</p>
+<p style="margin: 0in; margin-left: .375in; font-family: Calibri; font-size: 11.0pt;">ADV: less unnecessary communication over the bus</p>
+<p style="margin: 0in; margin-left: .375in; font-family: Calibri; font-size: 11.0pt;">DIS: additional bus lines, more complex state machine, waiting for all processors to set the shared line before it is possible to change state.</p>
+<p style="margin: 0in; margin-left: .375in; font-family: Calibri; font-size: 11.0pt;"> </p>
+<p style="margin: 0in; font-family: Calibri; font-size: 11.0pt;">What are the major features of MOESI protocols?</p>
+<ul type="disc" style="margin-left: .375in; direction: ltr; unicode-bidi: embed; margin-top: 0in; margin-bottom: 0in;">
+<li style="margin-top: 0; margin-bottom: 0; vertical-align: middle;"><span style="font-family: Calibri; font-size: 11.0pt;">ADDS NOTION OF OWNERSHIP TO AVOID UPDATING MEMORY ON EVERY WRITE; OWNER EVENTUALLY UPDATES MEMORY</span></li>
+<li style="margin-top: 0; margin-bottom: 0; vertical-align: middle;"><span style="font-family: Calibri; font-size: 11.0pt;">ALLOWS CACHE-TO-CACHE TRANSFERS BETWEEN OWNER AND REQUESTER</span></li>
+<li style="margin-top: 0; margin-bottom: 0; vertical-align: middle;"><span style="font-family: Calibri; font-size: 11.0pt;">OWNERSHIP IS TRANSFERRED TO ANOTHER CACHE OR TO MEMORY WHEN BLOCK IS INVALIDATED/REPLACED</span></li>
+</ul>
+<p style="margin: 0in; font-family: Calibri; font-size: 11.0pt;"> </p>
+<p style="margin: 0in; font-family: Calibri; font-size: 11.0pt;">List cache protocol optimizations.</p>
+<p style="margin: 0in; font-family: Calibri; font-size: 11.0pt;">What is migratory sharing?</p>
+<p style="margin: 0in; font-family: Calibri; font-size: 11.0pt;">What is producer-consumer sharing? Give an example.</p>
+<p style="margin: 0in; font-family: Calibri; font-size: 11.0pt;"> </p>
+<p style="margin: 0in; font-family: Calibri; font-size: 11.0pt;">Where is the snooping cache controller places in multilevel caches?</p>
+<p style="margin: 0in; font-family: Calibri; font-size: 11.0pt;">What does cache0inclusivity have with placement of the controller?</p>
+<p style="margin: 0in; font-family: Calibri; font-size: 11.0pt;"> </p>
+<p style="margin: 0in; font-family: Calibri; font-size: 11.0pt;">What are the information that have to be exchanged between two caches (L1 and L2) for the snooping protocol with multilevel caches? Assume that the caches are inclusive.  Describe information exchange both in L1-&gt;L2 and L2-&gt;L1 directions.</p>
+<ul type="disc" style="margin-left: .375in; direction: ltr; unicode-bidi: embed; margin-top: 0in; margin-bottom: 0in;">
+<li style="margin-top: 0; margin-bottom: 0; vertical-align: middle;"><span style="font-family: Calibri; font-size: 11.0pt;">If the block is in modified state in L1 then it must be marked modified in L2 as well. Data can be transferred to L2 or we can add additional state to L2 which is called "modified but stale".</span></li>
+</ul>
+<ul type="disc" style="margin-left: .375in; direction: ltr; unicode-bidi: embed; margin-top: 0in; margin-bottom: 0in;">
+<li style="margin-top: 0; margin-bottom: 0; vertical-align: middle;"><span style="font-family: Calibri; font-size: 11.0pt;">If the cache controller observes bus transaction (BusRdX) the invalidation must be propagated to the L1 cache if the data is present in it. To do that, L2 cache can keep track of all the copies that are in L1.</span></li>
+</ul>
+<p style="margin: 0in; margin-left: .375in; font-family: Calibri; font-size: 11.0pt;"> </p>
+<p style="margin: 0in; font-family: Calibri; font-size: 11.0pt;">What are the transient states that need to be added to MSI protocol? What is the reason for adding transient states? Give an example.</p>
+<p style="margin: 0in; font-family: Calibri; font-size: 11.0pt;"> </p>
+<p style="margin: 0in; font-family: Calibri; font-size: 11.0pt;"> </p>
+<p style="margin: 0in; font-family: Calibri; font-size: 11.0pt;"><span style="font-weight: bold;">Questions: Directory based protocols</span></p>
+<p style="margin: 0in; font-family: Calibri; font-size: 11.0pt;">Give an example of coherence bandwidth requirements for snooping based systems</p>
+<p style="margin: 0in; font-family: Calibri; font-size: 11.0pt;"> </p>
+<p style="margin: 0in; font-family: Calibri; font-size: 11.0pt;">Why aren't snooping protocols scalable?</p>
+<p style="margin: 0in; font-family: Calibri; font-size: 11.0pt;"> </p>
+<p style="margin: 0in; font-family: Calibri; font-size: 11.0pt;">What are two main approaches in handling scalability:</p>
+<ul type="disc" style="margin-left: .375in; direction: ltr; unicode-bidi: embed; margin-top: 0in; margin-bottom: 0in;">
+<li style="margin-top: 0; margin-bottom: 0; vertical-align: middle;"><span style="font-family: Calibri; font-size: 11.0pt;"> Replace   non-­‐scalable   bandwidth substrate   (bus) with   scalable  bandwidth network (point-­‐to-­‐point  network,  mesh)        </span></li>
+<li style="margin-top: 0; margin-bottom: 0; vertical-align: middle;"><span style="font-family: Calibri; font-size: 11.0pt;"> Replace   non-­‐scalable   broadcast protocol (spam  everyone)  with scalable directory protocol (only communicate with processors that have desired cache copies)</span></li>
+</ul>
+<p style="margin: 0in; font-family: Calibri; font-size: 11.0pt;"> </p>
+<p style="margin: 0in; font-family: Calibri; font-size: 11.0pt;">Show how central directory protocol works.</p>
+<p style="margin: 0in; font-family: Calibri; font-size: 11.0pt;"> </p>
+<p style="margin: 0in; font-family: Calibri; font-size: 11.0pt;">Describe directory protocol for a read-miss when there is another modified copy and for a write miss when there are other shared copies.</p>
+<p style="margin: 0in; font-family: Calibri; font-size: 11.0pt;"> </p>
+<p style="margin: 0in; font-family: Calibri; font-size: 11.0pt;">What are the sizes of full mapped (baseline directory) and limited (limited-pointer) directories?</p>
+<p style="margin: 0in; font-family: Calibri; font-size: 11.0pt;"> </p>
+<p style="margin: 0in; font-family: Calibri; font-size: 11.0pt;">Be able to do the example where there is a small program with loads and stores and you will need to show the content of directories and caches during and after the execution of the program for different types of directory protocols. You will be given the state-transition diagram of the protocol.</p>
+<p style="margin: 0in; font-family: Calibri; font-size: 11.0pt;"> </p>
+<p style="margin: 0in; font-family: Calibri; font-size: 11.0pt;">Describe actions that every cache coherence protocol has to perform</p>
+<p style="margin: 0in; margin-left: .375in; font-family: Calibri; font-size: 11.0pt;">(0)  Determine when to invoke coherence protocol</p>
+<p style="margin: 0in; margin-left: .375in; font-family: Calibri; font-size: 11.0pt;">(a)  Find source of info about state of line in other caches</p>
+<p style="margin: 0in; margin-left: .375in; font-family: Calibri; font-size: 11.0pt;">whether need to communicate with other cached copies</p>
+<p style="margin: 0in; margin-left: .375in; font-family: Calibri; font-size: 11.0pt;">(b)  Find out where the other copies are</p>
+<p style="margin: 0in; margin-left: .375in; font-family: Calibri; font-size: 11.0pt;">(c)  Communicate with those copies  (inval/update)</p>
+<p style="margin: 0in; font-family: Calibri; font-size: 11.0pt;"> </p>
+<p style="margin: 0in; font-family: Calibri; font-size: 11.0pt;">What are home directory, requester node, dirty node and shared node?</p>
+<p style="margin: 0in; font-family: Calibri; font-size: 11.0pt;"> </p>
+<p style="margin: 0in; font-family: Calibri; font-size: 11.0pt;">Why the architecture with local memories scale better that the one with the shared memory?</p>
+<ul type="disc" style="margin-left: .375in; direction: ltr; unicode-bidi: embed; margin-top: 0in; margin-bottom: 0in;"></ul>
+<p style="margin: 0in; font-family: Calibri; font-size: 11.0pt;"> </p>
+<p style="margin: 0in; font-family: Calibri; font-size: 11.0pt;">What is NUMA, cc-NUMA and COMA architectures? Draw organizations of these different architectures.</p>
+<p style="margin: 0in; font-family: Calibri; font-size: 11.0pt;"> </p>
+<p style="margin: 0in; font-family: Calibri; font-size: 11.0pt;">Classify full mapped, limited and chained directory protocols as memory centric or cache centric.</p>
+<p style="margin: 0in; font-family: Calibri; font-size: 11.0pt;"> </p>
+<p style="margin: 0in; font-family: Calibri; font-size: 11.0pt;">If MSI protocol is executed in each cache in directory protocol, what will happed where there is cache line replacement and that line is not dirty?</p>
+<ul type="disc" style="margin-left: .375in; direction: ltr; unicode-bidi: embed; margin-top: 0in; margin-bottom: 0in;">
+<li style="margin-top: 0; margin-bottom: 0; vertical-align: middle;"><span style="font-family: Calibri; font-size: 11.0pt;">The presence bit in the directory will not be updated unless there is a support for that.</span></li>
+</ul>
+<p style="margin: 0in; margin-left: .375in; font-family: Calibri; font-size: 11.0pt;"> </p>
+<p style="margin: 0in; font-family: Calibri; font-size: 11.0pt;">If MSI protocol is executed in each cache in directory protocol, what will happed where there is cache line replacement and that line is dirty?</p>
+<p style="margin: 0in; font-family: Calibri; font-size: 11.0pt;"> </p>
+<p style="margin: 0in; font-family: Calibri; font-size: 11.0pt;">Why do we need a busy bit or a lock bit at the home node?</p>
+<p style="margin: 0in; font-family: Calibri; font-size: 11.0pt;">  </p>
+<p style="margin: 0in; font-family: Calibri; font-size: 11.0pt;">What is the number of network transactions in case of read miss for the baseline and for the Stanford Dash system? What has been done to reduce the number of transactions?</p>
+<p style="margin: 0in; font-family: Calibri; font-size: 11.0pt;"> </p>
+<p style="margin: 0in; font-family: Calibri; font-size: 11.0pt;">List advantages and disadvantages of chained directory protocols (cache centric directory protocols).</p>
+<p style="margin: 0in; font-family: Calibri; font-size: 11.0pt;"> </p>
+<p style="margin: 0in; font-family: Calibri; font-size: 11.0pt;">List properties of trhee types of intra-inter cluster coherence solutions.</p>
+<p style="margin: 0in; font-family: Calibri; font-size: 11.0pt;"> </p>
+<p style="margin: 0in; font-family: Calibri; font-size: 11.0pt;">What are the advantages of static and of dynamic page placement to cc-NUMA architectures? What are round-robin and first touch static placements?</p>
+<p style="margin: 0in; font-family: Calibri; font-size: 11.0pt;"> </p>
+<p style="margin: 0in; font-family: Calibri; font-size: 11.0pt;">When is it beneficial to perform page replication and when it is disadvantageous?</p>
+<p style="margin: 0in; font-family: Calibri; font-size: 11.0pt;"></p>
+<p style="margin: 0in; font-family: Calibri; font-size: 11.0pt;"><span style="font-weight: bold;">Interconnection networks</span></p>
+<p style="margin: 0in; font-family: Calibri; font-size: 11.0pt;"> </p>
+<p style="margin: 0in; font-family: Calibri; font-size: 11.0pt;">What is the width of the link?</p>
+<p style="margin: 0in; font-family: Calibri; font-size: 11.0pt;"> </p>
+<p style="margin: 0in; font-family: Calibri; font-size: 11.0pt;">What is the link bandwidth?</p>
+<p style="margin: 0in; font-family: Calibri; font-size: 11.0pt;"> </p>
+<p style="margin: 0in; font-family: Calibri; font-size: 11.0pt;">What is the advantage of asynchronous communication?</p>
+<p style="margin: 0in; font-family: Calibri; font-size: 11.0pt;"> </p>
+<p style="margin: 0in; font-family: Calibri; font-size: 11.0pt;">What is switch degree?</p>
+<p style="margin: 0in; font-family: Calibri; font-size: 11.0pt;"> </p>
+<p style="margin: 0in; font-family: Calibri; font-size: 11.0pt;">What is the maximum degree of the switches in 4x4 mesh network?</p>
+<p style="margin: 0in; font-family: Calibri; font-size: 11.0pt;"> </p>
+<p style="margin: 0in; font-family: Calibri; font-size: 11.0pt;">Distinguish between unicast, broadcast and multicast.</p>
+<p style="margin: 0in; font-family: Calibri; font-size: 11.0pt;"> </p>
+<p style="margin: 0in; font-family: Calibri; font-size: 11.0pt;">Describe the packet? Why is the routing information stored in the header?</p>
+<p style="margin: 0in; font-family: Calibri; font-size: 11.0pt;"> </p>
+<p style="margin: 0in; font-family: Calibri; font-size: 11.0pt;">Define and compare switching strategies.</p>
+<p style="margin: 0in; font-family: Calibri; font-size: 11.0pt;"> </p>
+<p style="margin: 0in; font-family: Calibri; font-size: 11.0pt;">What is routing, flow control and network topology?</p>
+<p style="margin: 0in; font-family: Calibri; font-size: 11.0pt;"> </p>
+<p style="margin: 0in; font-family: Calibri; font-size: 11.0pt;">What contributes to the end-to-end packet latency?</p>
+<p style="margin: 0in; font-family: Calibri; font-size: 11.0pt;"> </p>
+<p style="margin: 0in; font-family: Calibri; font-size: 11.0pt;">What are flit and phit?</p>
+<p style="margin: 0in; font-family: Calibri; font-size: 11.0pt;"> </p>
+<p style="margin: 0in; font-family: Calibri; font-size: 11.0pt;">Compute end-to-end delay for a given switching strategy.</p>
+<p style="margin: 0in; font-family: Calibri; font-size: 11.0pt;"> </p>
+<p style="margin: 0in; font-family: Calibri; font-size: 11.0pt;">Define network diameter  and average routing distance.</p>
+<p style="margin: 0in; font-family: Calibri; font-size: 11.0pt;"> </p>
+<p style="margin: 0in; font-family: Calibri; font-size: 11.0pt;">What is the split-transaction bus? Why is it used? What changes in the system does one need to make in order to support split transaction buses?</p>
+<p style="margin: 0in; font-family: Calibri; font-size: 11.0pt;"> </p>
+<p style="margin: 0in; font-family: Calibri; font-size: 11.0pt;">What is the burst mode of the bus?</p>
+<p style="margin: 0in; font-family: Calibri; font-size: 11.0pt;"> </p>
+<p style="margin: 0in; font-family: Calibri; font-size: 11.0pt;">What is the difference between synchronies and Asynchronous buses? What is hand-shaking in buses?</p>
+<p style="margin: 0in; font-family: Calibri; font-size: 11.0pt;"> </p>
+<p style="margin: 0in; font-family: Calibri; font-size: 11.0pt;">Calculate the transaction time and latency when buses are used.</p>
+<p style="margin: 0in; font-family: Calibri; font-size: 11.0pt;"> </p>
+<p style="margin: 0in; font-family: Calibri; font-size: 11.0pt;">Understand the following topologies: crossbar switch, tree, multistage networks including omega and butterfly.</p>
+<p style="margin: 0in; font-family: Calibri; font-size: 11.0pt;"> </p>
+<p style="margin: 0in; font-family: Calibri; font-size: 11.0pt;">Compute network parameters/characteristics of all types of networks including both direct and indirect networks.</p>
+<p style="margin: 0in; font-family: Calibri; font-size: 11.0pt;"> </p>
+<p style="margin: 0in; font-family: Calibri; font-size: 11.0pt;">What are hypercubes and k-ary n-cubes?</p>
+<p style="margin: 0in; font-family: Calibri; font-size: 11.0pt;"> </p>
+<p style="margin: 0in; font-family: Calibri; font-size: 11.0pt;">How is routing performed in meshes, omega networks and hypercubes? Give examples of deterministic routing?</p>
+<p style="margin: 0in; font-family: Calibri; font-size: 11.0pt;"> </p>
+<p style="margin: 0in; font-family: Calibri; font-size: 11.0pt;">What is the difference between deterministic, oblivious and adaptive routing?</p>
+<p style="margin: 0in; font-family: Calibri; font-size: 11.0pt;"> </p>
+<p style="margin: 0in; font-family: Calibri; font-size: 11.0pt;">What are virtual channels? What are they used for?</p>
+<p style="margin: 0in; font-family: Calibri; font-size: 11.0pt;"> </p>
+<p style="margin: 0in; font-family: Calibri; font-size: 11.0pt;">How can deadlock be avoided for deterministic routing and how for adaptive?</p>
+<p style="margin: 0in; font-family: Calibri; font-size: 11.0pt;"> </p>
+<p style="margin: 0in; font-family: Calibri; font-size: 11.0pt;">Draw the architecture of the switch. Explain its components.</p>
+<p style="margin: 0in; font-family: Calibri; font-size: 11.0pt;"> </p>
+<p style="margin: 0in; font-family: Calibri; font-size: 11.0pt;"></p>
+<p style="margin: 0in; font-family: Calibri; font-size: 11.0pt;">What is flow control and how is it implemented in the switch.</p>
+</body>
+</html>
