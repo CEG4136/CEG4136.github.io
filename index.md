@@ -13,16 +13,9 @@ Table of Contents:
   3. Textbook Slides
   4. Student Projects
  
- \n
- \n
- \n
- \n
- .
- .
- .
- .
- .
- .
- .
+ 
+ 
+ 
+ 
  
  "Don't Judge each day by the harvest you reap, but by the seeds you plant"
