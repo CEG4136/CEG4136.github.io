@@ -1,4 +1,4 @@
-## Welcome to Computer Architecture III Course 
+## Computer Architecture III 4136 Course UOttawa
 
 You can scroll and visit the various interesting projects we are doing !
 
