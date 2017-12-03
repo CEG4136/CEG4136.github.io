@@ -1,6 +1,6 @@
 CEG 4136 COMPUTER ARCHITECTURE III 
-
-UOttawa
 =========
+at UOttawa
 
+Course Website 
 Created using class template ac297
