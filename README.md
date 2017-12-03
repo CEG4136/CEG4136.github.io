@@ -1,4 +1,4 @@
-classtmpl
+CEG 4136 COMPUTER ARCHITECTURE III UOttawa
 =========
 
-A template to create class websites using pelican
+Created using class template ac297
